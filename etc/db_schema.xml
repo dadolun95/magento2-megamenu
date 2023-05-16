@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dadolun_menu" resource="default" engine="innodb" comment="MegaMenu Table">
+        <column xsi:type="int" name="menu_id" unsigned="true" nullable="false" identity="true"
+                comment="MegaMenu ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"
+                comment="MegaMenu Name"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="menu_id"/>
+        </constraint>
+        <index referenceId="DADOLUN_MENU_ID" indexType="btree">
+            <column name="menu_id"/>
+        </index>
+    </table>
+    <table name="dadolun_menu_item" resource="default" engine="innodb" comment="MegaMenu Item Table">
+        <column xsi:type="int" name="item_id" unsigned="true" nullable="false" identity="true"
+                comment="Item ID"/>
+        <column xsi:type="int" name="menu_id" unsigned="true" nullable="false" identity="false"
+                comment="MegaMenu ID"/>
+        <column xsi:type="int" name="sort_order" unsigned="true" nullable="false"
+                identity="false" default="0" comment="MegaMenu Item order"/>
+        <column xsi:type="int" name="status" unsigned="true" nullable="false"
+                identity="false" default="0" comment="MegaMenu Item status"/>
+        <column xsi:type="int" name="layout" unsigned="true" nullable="false"
+                identity="false" default="0" comment="MegaMenu Item layout"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255"
+                comment="MegaMenu Item Text"/>
+        <column xsi:type="varchar" name="link_classes" nullable="true" length="255"
+                comment="Additional Link classes"/>
+        <column xsi:type="smallint" name="item_type" unsigned="true" nullable="false"
+                identity="false" default="0" comment="MegaMenu Item type"/>
+        <column xsi:type="int" name="linked_entity_id" unsigned="true" nullable="true"
+                comment="Linked Entity Id"/>
+        <column xsi:type="mediumtext" name="content" nullable="true"
+                comment="First Column Content"/>
+        <column xsi:type="varchar" name="content_additional_classes" nullable="true"
+                comment="First Column Content Classes"/>
+        <column xsi:type="varchar" name="content_desktop_width" nullable="true"
+                comment="First Column Desktop Width"/>
+        <column xsi:type="varchar" name="content_tablet_width" nullable="true"
+                comment="First Column Tablet Width"/>
+        <column xsi:type="mediumtext" name="content_second" nullable="true"
+                comment="Second Column Content"/>
+        <column xsi:type="varchar" name="content_second_additional_classes" nullable="true"
+                comment="Second Column Content Classes"/>
+        <column xsi:type="varchar" name="content_second_desktop_width" nullable="true"
+                comment="Second Column Desktop Width"/>
+        <column xsi:type="varchar" name="content_second_tablet_width" nullable="true"
+                comment="Second Column Tablet Width"/>
+        <column xsi:type="mediumtext" name="content_third" nullable="true"
+                comment="Third Column Content"/>
+        <column xsi:type="varchar" name="content_third_additional_classes" nullable="true"
+                comment="Third Column Content Classes"/>
+        <column xsi:type="varchar" name="content_third_desktop_width" nullable="true"
+                comment="Third Column Desktop Width"/>
+        <column xsi:type="varchar" name="content_third_tablet_width" nullable="true"
+                comment="Third Column Tablet Width"/>
+        <column xsi:type="varchar" name="custom_url" nullable="true" length="255"
+                comment="MegaMenu Item Custom Url"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="DADOLUN_MENU_ITEM_MENU_RELATION" table="dadolun_menu_item"
+            column="menu_id" referenceTable="dadolun_menu" referenceColumn="menu_id" onDelete="CASCADE"/>
+        <index referenceId="DADOLUN_MENU_ITEM_MENU_ID" indexType="btree">
+            <column name="menu_id"/>
+        </index>
+    </table>
+    <table name="dadolun_menu_store" resource="default" engine="innodb" comment="MegaMenu Store Table">
+        <column xsi:type="int" name="menu_id" unsigned="true" nullable="false" identity="false"
+                comment="MegaMenu ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="menu_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="DADOLUN_MENU_STORE_MENU_ID_DADOLUN_MENU_MENU_ID" table="dadolun_menu_store"
+                    column="menu_id" referenceTable="dadolun_menu" referenceColumn="menu_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="DADOLUN_MENU_STORE_STORE_ID_STORE_STORE_ID" table="dadolun_menu_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="DADOLUN_MENU_STORE_MENU_ID" indexType="btree">
+            <column name="menu_id"/>
+        </index>
+        <index referenceId="DADOLUN_MENU_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

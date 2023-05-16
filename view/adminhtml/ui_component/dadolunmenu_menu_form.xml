@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">dadolunmenu_menu_form.menu_form_data_source</item>
+            <item name="deps" xsi:type="string">dadolunmenu_menu_form.menu_form_data_source</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">dadolunmenu_menu_form</item>
+            <item name="deps" xsi:type="string">dadolunmenu_menu_form.menu_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="childrenFromMeta" xsi:type="boolean">true</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Dadolun\MegaMenu\Block\Adminhtml\Menu\Edit\Button\Save"/>
+            <button name="back" class="Dadolun\MegaMenu\Block\Adminhtml\Menu\Edit\Button\Back"/>
+            <button name="delete" class="Dadolun\MegaMenu\Block\Adminhtml\Menu\Edit\Button\Delete"/>
+        </buttons>
+        <namespace>dadolunmenu_menu_form</namespace>
+    </settings>
+    <dataSource name="menu_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="dadolunmenu/menu/save"/>
+        </settings>
+        <dataProvider class="Dadolun\MegaMenu\Ui\DataProvider\Menu" name="menu_form_data_source">
+            <settings>
+                <requestFieldName>menu_id</requestFieldName>
+                <primaryFieldName>menu_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Settings</label>
+        </settings>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Name</label>
+                <notice translate="true">Insert the menu Name. Ex: main-menu or footer-left-menu</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+        <field name="store_ids" formElement="multiselect" class="Magento\Store\Ui\Component\Form\Field\StoreView">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <tooltip>
+                    <link>https://docs.magento.com/m2/ce/user_guide/configuration/scope.html</link>
+                    <description>What is this?</description>
+                </tooltip>
+                <label translate="true">Store View</label>
+                <dataScope>stores</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="items" class="Dadolun\MegaMenu\Ui\Component\Form\Items">
+        <settings>
+            <level>1</level>
+            <collapsible>true</collapsible>
+            <label translate="true">MegaMenu Items</label>
+        </settings>
+        <button name="add_item_menu" component="Dadolun_MegaMenu/js/menu/item/default-item">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">container</item>
+                    <item name="buttonClasses" xsi:type="string">add-new-item-menu</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.dadolunmenu_menu_item_update_modal.update_dadolunmenu_menu_item__form_loader</item>
+                            <item name="actionName" xsi:type="string">destroyInserted</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.dadolunmenu_menu_item_update_modal</item>
+                            <item name="actionName" xsi:type="string">openModal</item>
+                        </item>
+                        <item name="2" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.dadolunmenu_menu_item_update_modal.update_dadolunmenu_menu_item__form_loader</item>
+                            <item name="actionName" xsi:type="string">render</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <title translate="true">Add New MegaMenu Item</title>
+                <imports>
+                    <link name="parentId">${ $.provider}:data.menu_id</link>
+                </imports>
+            </settings>
+        </button>
+        <modal name="dadolunmenu_menu_item_update_modal">
+            <settings>
+                <options>
+                    <option name="title" xsi:type="string">Add/Update Item MegaMenu</option>
+                </options>
+            </settings>
+            <insertForm name="update_dadolunmenu_menu_item__form_loader" component="Dadolun_MegaMenu/js/form/components/insert-item-form">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="itemMegaMenuListingProvider" xsi:type="string">ns = dadolunmenu_menu_item_listing, index = dadolunmenu_menu_item_listing</item>
+                        <item name="itemMegaMenuModalProvider" xsi:type="string">${ $.parentName }</item>
+                    </item>
+                </argument>
+                <settings>
+                    <formSubmitType>ajax</formSubmitType>
+                    <renderUrl path="mui/index/render_handle">
+                        <param name="handle">dadolunmenu_menu_item_edit</param>
+                        <param name="buttons">1</param>
+                    </renderUrl>
+                    <loading>false</loading>
+                    <toolbarContainer>${ $.parentName }</toolbarContainer>
+                    <externalProvider>${ $.ns }.dadolunmenu_menu_item_form_data_source</externalProvider>
+                    <ns>dadolunmenu_menu_item_form</ns>
+                    <exports>
+                        <link name="parentId">${ $.externalProvider }:data.parent_id</link>
+                    </exports>
+                    <imports>
+                        <link name="parentId">${ $.provider}:data.menu_id</link>
+                        <link name="onItemDelete">${ $.ns }.${ $.ns }:deleteItemAction</link>
+                    </imports>
+                </settings>
+            </insertForm>
+        </modal>
+        <insertListing name="dadolunmenu_menu_item_listing" component="Magento_Ui/js/form/components/insert-listing">
+            <settings>
+                <dataLinks>
+                    <exports>false</exports>
+                    <imports>true</imports>
+                </dataLinks>
+                <externalProvider>dadolunmenu_menu_item_listing.dadolunmenu_menu_item_listing_data_source</externalProvider>
+                <selectionsProvider>dadolunmenu_menu_item_listing.dadolunmenu_menu_item_listing.dadolunmenu_menu_item_listing_columns.ids</selectionsProvider>
+                <autoRender>true</autoRender>
+                <dataScope>dadolunmenu_menu_item_listing</dataScope>
+                <ns>dadolunmenu_menu_item_listing</ns>
+                <exports>
+                    <link name="parent_id">${ $.externalProvider }:params.parent_id</link>
+                </exports>
+                <imports>
+                    <link name="parent_id">${ $.provider }:data.menu_id</link>
+                    <link name="onAction">ns = ${ $.ns }, index = actions:action</link>
+                    <link name="onMassAction">ns = ${ $.ns }, index = listing_massaction:massaction</link>
+                </imports>
+            </settings>
+        </insertListing>
+    </fieldset>
+</form>

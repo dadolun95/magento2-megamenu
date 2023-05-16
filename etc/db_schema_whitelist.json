@@ -1,0 +1,67 @@
+{
+    "dadolun_menu": {
+        "column": {
+            "menu_id": true,
+            "name": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "DADOLUN_MENU_MENU_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "dadolun_menu_item": {
+        "column": {
+            "item_id": true,
+            "menu_id": true,
+            "sort_order": true,
+            "status": true,
+            "layout": true,
+            "title": true,
+            "link_classes": true,
+            "item_type": true,
+            "required_options": true,
+            "content": true,
+            "content_additional_classes": true,
+            "content_desktop_width": true,
+            "content_tablet_width": true,
+            "content_second": true,
+            "content_second_additional_classes": true,
+            "content_second_desktop_width": true,
+            "content_second_tablet_width": true,
+            "content_third": true,
+            "content_third_additional_classes": true,
+            "content_third_desktop_width": true,
+            "content_third_tablet_width": true,
+            "custom_url": true,
+            "created_at": true,
+            "updated_at": true,
+            "is_linkable": true
+        },
+        "index": {
+            "DADOLUN_MENU_ITEM_MENU_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "DADOLUN_MENU_ITEM_MENU_ID_DADOLUN_MENU_MENU_ID": true
+        }
+    },
+    "dadolun_menu_store": {
+        "column": {
+            "menu_id": true,
+            "store_id": true
+        },
+        "index": {
+            "DADOLUN_MENU_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "DADOLUN_MENU_STORE_MENU_ID_DADOLUN_MENU_MENU_ID": true,
+            "DADOLUN_MENU_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

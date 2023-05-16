@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">dadolunmenu_menu_item_form.dadolunmenu_menu_item_form_data_source</item>
+            <item name="parentProvider" xsi:type="string">dadolunmenu_menu_form.dadolunmenu_menu_item_form_data_source</item>
+            <item name="deps" xsi:type="string">dadolunmenu_menu_item_form.dadolunmenu_menu_item_form_data_source</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">dadolunmenu_menu_item_form</item>
+            <item name="deps" xsi:type="string">dadolunmenu_menu_item_form.dadolunmenu_menu_item_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="childrenFromMeta" xsi:type="boolean">true</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Dadolun\MegaMenu\Block\Adminhtml\Menu\Item\Edit\Button\Save"/>
+            <button name="back" class="Dadolun\MegaMenu\Block\Adminhtml\Menu\Item\Edit\Button\Back"/>
+            <button name="delete" class="Dadolun\MegaMenu\Block\Adminhtml\Menu\Item\Edit\Button\Delete"/>
+        </buttons>
+        <namespace>dadolunmenu_menu_item_form</namespace>
+    </settings>
+    <dataSource name="dadolunmenu_menu_item_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="dadolunmenu/menu_item/save"/>
+        </settings>
+        <dataProvider class="Dadolun\MegaMenu\Ui\DataProvider\Menu\Item" name="dadolunmenu_menu_item_form_data_source">
+            <settings>
+                <requestFieldName>item_id</requestFieldName>
+                <primaryFieldName>Item_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Settings</label>
+        </settings>
+        <field name="menu_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">MegaMenu Id</label>
+                <notice translate="true">MegaMenu Id</notice>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>menu_id</dataScope>
+                <imports>
+                    <link name="value">dadolunmenu_menu_form.menu_form_data_source:data.menu_id</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="title" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Title</label>
+                <notice translate="true">Insert the menu item label</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+        <field name="link_classes" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <label translate="true">Additional Classes</label>
+                <notice translate="true">Main link additional classes</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>link_classes</dataScope>
+            </settings>
+        </field>
+        <field name="item_type" component="Dadolun_MegaMenu/js/form/element/item-type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="elementTmpl" xsi:type="string">Dadolun_MegaMenu/form/element/item-type</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Item type</label>
+                <notice translate="true">Select the menu item type</notice>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <dataScope>item_type</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\EntityType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="linked_category" component="Magento_Catalog/js/components/new-category" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">2</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <label translate="true">Category</label>
+                <notice translate="true">Choose the category to link</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <componentType>field</componentType>
+                <dataScope>linked_entity_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Catalog\Ui\Component\Product\Form\Categories\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="linked_cmspage" component="Magento_Ui/js/form/element/select" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <label translate="true">CMS page</label>
+                <notice translate="true">Choose the CMS page to link</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>linked_entity_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Ui\Component\CmsPage\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="status" component="Magento_Ui/js/form/element/select" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="value" xsi:type="string">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Status</label>
+                <notice translate="true">Choose the item Status</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\Status"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="sort_order" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="value" xsi:type="string">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-integer" xsi:type="boolean">true</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Order</label>
+                <notice translate="true">Insert the menu item order</notice>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <dataScope>sort_order</dataScope>
+            </settings>
+        </field>
+        <field name="custom_url" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <label translate="true">Custom Url</label>
+                <notice translate="true">Insert the menu item custom url</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>custom_url</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="design">
+        <settings>
+            <label translate="true">Design</label>
+        </settings>
+        <field name="layout" component="Dadolun_MegaMenu/js/form/element/layout" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="value" xsi:type="string">0</item>
+                    <item name="elementTmpl" xsi:type="string">Dadolun_MegaMenu/form/element/layout</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Layout</label>
+                <notice translate="true">Choose the Item Layout</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>layout</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\Layout"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content" template="ui/form/field" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="add_variables" xsi:type="boolean">false</item>
+                        <item name="add_widgets" xsi:type="boolean">true</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                        <item name="is_pagebuilder_enabled" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>content</dataScope>
+                <dataType>string</dataType>
+                <label translate="true">Content</label>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <field name="content_additional_classes" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <label translate="true">Content Additional Classes</label>
+                <notice translate="true">Set additional CSS classes</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>content_additional_classes</dataScope>
+            </settings>
+        </field>
+        <field name="content_desktop_width" component="Dadolun_MegaMenu/js/form/element/content-width" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="elementTmpl" xsi:type="string">Dadolun_MegaMenu/form/element/content-width</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Content Desktop Width</label>
+                <notice translate="true">Select the content width</notice>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <dataScope>content_desktop_width</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\ColumnWidth"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content_tablet_width" component="Dadolun_MegaMenu/js/form/element/content-width" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="elementTmpl" xsi:type="string">Dadolun_MegaMenu/form/element/content-width</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Content Tablet Width</label>
+                <notice translate="true">Select the content width</notice>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <dataScope>content_tablet_width</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\ColumnWidth"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content_second" template="ui/form/field" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="add_variables" xsi:type="boolean">false</item>
+                        <item name="add_widgets" xsi:type="boolean">true</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                        <item name="is_pagebuilder_enabled" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>content_second</dataScope>
+                <dataType>string</dataType>
+                <label translate="true">Content Second</label>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <field name="content_second_additional_classes" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <label translate="true">Content Second Additional Classes</label>
+                <notice translate="true">Set additional CSS classes</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>content_second_additional_classes</dataScope>
+            </settings>
+        </field>
+        <field name="content_second_desktop_width" component="Dadolun_MegaMenu/js/form/element/content-width" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="elementTmpl" xsi:type="string">Dadolun_MegaMenu/form/element/content-width</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Content Desktop Width</label>
+                <notice translate="true">Select the content width</notice>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <dataScope>content_second_desktop_width</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\ColumnWidth"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content_second_tablet_width" component="Dadolun_MegaMenu/js/form/element/content-width" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="elementTmpl" xsi:type="string">Dadolun_MegaMenu/form/element/content-width</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Content Tablet Width</label>
+                <notice translate="true">Select the content width</notice>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <dataScope>content_second_tablet_width</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\ColumnWidth"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content_third" template="ui/form/field" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="add_variables" xsi:type="boolean">false</item>
+                        <item name="add_widgets" xsi:type="boolean">true</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                        <item name="is_pagebuilder_enabled" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>content_third</dataScope>
+                <dataType>string</dataType>
+                <label translate="true">Content Third</label>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <field name="content_third_additional_classes" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <label translate="true">Content Third Additional Classes</label>
+                <notice translate="true">Set additional CSS classes</notice>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>content_third_additional_classes</dataScope>
+            </settings>
+        </field>
+        <field name="content_third_desktop_width" component="Dadolun_MegaMenu/js/form/element/content-width" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="elementTmpl" xsi:type="string">Dadolun_MegaMenu/form/element/content-width</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Content Desktop Width</label>
+                <notice translate="true">Select the content width</notice>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <dataScope>content_third_desktop_width</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\ColumnWidth"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content_third_tablet_width" component="Dadolun_MegaMenu/js/form/element/content-width" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dadolunmenu_item</item>
+                    <item name="elementTmpl" xsi:type="string">Dadolun_MegaMenu/form/element/content-width</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Content Tablet Width</label>
+                <notice translate="true">Select the content width</notice>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <dataScope>content_third_tablet_width</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Dadolun\MegaMenu\Model\MenuItem\Source\ColumnWidth"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

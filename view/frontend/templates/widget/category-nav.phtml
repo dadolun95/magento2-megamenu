@@ -1,0 +1,7 @@
+<?php
+use Dadolun\MegaMenu\Block\Widget\CategoryNav;
+
+/** @var CategoryNav $block */
+$data = $block->getData();
+?>
+<?= $block->getCategoryTreeHtml($data["category"], $data["depth"], $data["show_children_only"]); ?>

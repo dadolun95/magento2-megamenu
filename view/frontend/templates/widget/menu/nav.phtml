@@ -1,0 +1,14 @@
+<?php
+use \Dadolun\MegaMenu\Block\Widget\NavMenu;
+
+/** @var NavMenu $block */
+$data = $block->getData();
+$menu = $block->getMenuHtml($data["menu"]);
+?>
+
+<ul class="nav nav-default">
+    <?= $menu ?>
+</ul>
+
+
+

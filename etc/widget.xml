@@ -1,0 +1,38 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+
+    <widget class="Dadolun\MegaMenu\Block\Widget\NavMenu" id="dadolun_nav_menu_widget">
+        <label>Dadolun Nav MegaMenu</label>
+        <description>Dadolun Nav MegaMenu Widget</description>
+        <parameters>
+            <parameter name="menu" xsi:type="select" required="true" visible="true"
+                       source_model="Dadolun\MegaMenu\Model\Config\Source\Menu" sort_order="0">
+                <label translate="true">Dadolun MegaMenu</label>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget class="Dadolun\MegaMenu\Block\Widget\CategoryNav" id="dadolun_menu_category_nav_widget">
+        <label>Dadolun Category Nav Widget</label>
+        <description>Dadolun Category Nav Widget</description>
+        <parameters>
+            <parameter name="category" xsi:type="block" visible="true" required="true" sort_order="10">
+                <label translate="true">Category</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="depth" xsi:type="text" required="true" visible="true" sort_order="1">
+                <label translate="true">Category Tree Depth</label>
+            </parameter>
+            <parameter name="show_children_only" xsi:type="select" required="false" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno" sort_order="11">
+                <label translate="true">Show only child elements? </label>
+            </parameter>
+        </parameters>
+    </widget>
+
+</widgets>

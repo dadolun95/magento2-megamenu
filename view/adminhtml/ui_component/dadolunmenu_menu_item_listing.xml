@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">dadolunmenu_menu_item_listing.dadolunmenu_menu_item_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>dadolunmenu_menu_item_columns</spinner>
+        <deps>
+            <dep>dadolunmenu_menu_item_listing.dadolunmenu_menu_item_listing_data_source</dep>
+        </deps>
+        <ns>dadolunmenu_menu_item_listing</ns>
+    </settings>
+    <dataSource name="dadolunmenu_menu_item_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">item_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Dadolun_MegaMenu::config</aclResource>
+        <dataProvider class="Dadolun\MegaMenu\Ui\DataProvider\Menu\Item\Listing" name="dadolunmenu_menu_item_listing_data_source">
+            <settings>
+                <requestFieldName>item_id</requestFieldName>
+                <primaryFieldName>item_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="dadolunmenu_menu_item_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">dadolunmenu_menu_item_listing.dadolunmenu_menu_item_listing.menu_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <column name="item_id" sortOrder="0">
+            <settings>
+                <addField>true</addField>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>true</sortable>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="title" sortOrder="10">
+            <settings>
+                <addField>true</addField>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>true</sortable>
+                <label translate="true">Title</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="item_type" class="Dadolun\MegaMenu\Ui\Component\Listing\Column\MenuItem\ItemType" sortOrder="20">
+            <settings>
+                <addField>true</addField>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>true</sortable>
+                <label translate="true">Item Type</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="status" class="Dadolun\MegaMenu\Ui\Component\Listing\Column\MenuItem\Status" sortOrder="30">
+            <settings>
+                <addField>true</addField>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="sort_order" sortOrder="40">
+            <settings>
+                <addField>true</addField>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+                <label translate="true">Order</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Dadolun\MegaMenu\Ui\Component\Listing\Item\Column\EditAction" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">dadolunmenu/menu_item/edit</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>item_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

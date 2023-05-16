@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dadolun_MegaMenu::dadolunmenu" title="MegaMenu" translate="title" module="Dadolun_MegaMenu" sortOrder="100" parent="Magento_Backend::system_design" action="dadolunmenu/menu" resource="Dadolun_MegaMenu::menu"/>
+    </menu>
+</config>

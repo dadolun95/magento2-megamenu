@@ -1,0 +1,98 @@
+//@magento_import 'source/_variables.less';
+& when (@media-common = true) {
+    body {
+        .page-wrapper {
+            nav {
+                &.navigation {
+                    ul {
+                        &.nav {
+                            &.nav-default {
+                                display: block !important;
+                                position: relative;
+                                top: auto !important;
+                                ul {
+                                    display: block !important;
+                                    position: relative;
+                                    top: auto !important;
+                                }
+                                li {
+                                    text-align: left;
+                                }
+                            }
+                        }
+                        &.menu-category-nav {
+                            display: block !important;
+                            position: relative;
+                            top: auto !important;
+                            ul {
+                                display: block !important;
+                                position: relative;
+                                top: auto !important;
+                            }
+                            li {
+                                text-align: left;
+                            }
+                        }
+                    }
+                    .row {
+                        &.column-2,
+                        &.column-3 {
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            .width-1-6-s {
+                                width: ~"calc(100%/6)";
+                            }
+
+                            .width-2-6-s {
+                                width: ~"calc((100%/6)*2)";
+                            }
+
+                            .width-3-6-s {
+                                width: ~"calc((100%/6)*3)";
+                            }
+
+                            .width-4-6-s {
+                                width: ~"calc((100%/6)*4)";
+                            }
+
+                            .width-5-6-s {
+                                width: ~"calc((100%/6)*5)";
+                            }
+
+                            .width-6-6-s {
+                                width: 100%;
+                            }
+
+                            @media all and (min-width: @screen__m) {
+                                .width-1-6-m {
+                                    width: ~"calc(100%/6)";
+                                }
+
+                                .width-2-6-m {
+                                    width: ~"calc((100%/6)*2)";
+                                }
+
+                                .width-3-6-m {
+                                    width: ~"calc((100%/6)*3)";
+                                }
+
+                                .width-4-6-m {
+                                    width: ~"calc((100%/6)*4)";
+                                }
+
+                                .width-5-6-m {
+                                    width: ~"calc((100%/6)*5)";
+                                }
+
+                                .width-6-6-m {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
