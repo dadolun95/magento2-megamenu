@@ -179,12 +179,12 @@ class Topmenu extends Nav
             case Layout::NO_CONTENT_LAYOUT:
                 return '';
             case Layout::ONE_COLUMN_LAYOUT:
-                $layoutHtml .= '<div class="level0 submenu ui-menu ui-widget ui-widget-content ui-front"><div class="row columns-' . Layout::ONE_COLUMN_LAYOUT . '">';
+                $layoutHtml .= '<div class="level0 submenu ui-menu ui-widget ui-widget-content ui-front"><div class="row column-' . Layout::ONE_COLUMN_LAYOUT . '">';
                 $layoutHtml .= $itemContent;
                 $layoutHtml .= '</div></div>';
                 break;
             case Layout::TWO_COLUMN_LAYOUT:
-                $layoutHtml .= '<div class="level0 submenu ui-menu ui-widget ui-widget-content ui-front"><div class="row columns-' . Layout::TWO_COLUMN_LAYOUT . '">';
+                $layoutHtml .= '<div class="level0 submenu ui-menu ui-widget ui-widget-content ui-front"><div class="row column-' . Layout::TWO_COLUMN_LAYOUT . '">';
                 $layoutHtml .= $itemContent;
                 $layoutHtml .= $itemContentSecond;
                 $layoutHtml .= '</div></div>';
