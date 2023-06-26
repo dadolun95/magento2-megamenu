@@ -1,12 +1,14 @@
 {
   "name": "dadolun/magento2-megamenu",
-  "description": "MegaMenu made easy for Magento2 by Dadolun",
+  "description": "Magento2 MegaMenu made easy",
   "require": {
-    "magento/framework": "^101.0.1|^101.1|^102.0|^103.0",
     "php": ">=7.1.0"
   },
   "type": "magento2-module",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "license": [
+    "MIT"
+  ],
   "autoload": {
       "files": [
           "registration.php"
