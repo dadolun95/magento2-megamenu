@@ -12,14 +12,6 @@ Here it is the feature list:
 ## Installation
 You can install this module adding it on app/code folder or with composer.
 ##### COMPOSER
-You need to update your composer.json "repositories" node:
-```
-{
-    "type": "vcs",
-    "url":  "git@github.com:dadolun95/magento2-megamenu.git"
-}
-```
-Then execute this command:
 ```
 composer require dadolun95/magento2-megamenu
 ```
