@@ -113,10 +113,10 @@ class MenuItem extends AbstractModel implements MenuItemInterface {
     }
 
     /**
-     * @return integer
+     * @return string
      */
     public function getContent() {
-        return $this->getData(self::CONTENT);
+        return strval($this->getData(self::CONTENT));
     }
 
     /**
@@ -141,10 +141,10 @@ class MenuItem extends AbstractModel implements MenuItemInterface {
     }
 
     /**
-     * @return integer
+     * @return string
      */
     public function getContentSecond() {
-        return $this->getData(self::CONTENT_SECOND);
+        return strval($this->getData(self::CONTENT_SECOND));
     }
 
     /**
@@ -169,10 +169,10 @@ class MenuItem extends AbstractModel implements MenuItemInterface {
     }
 
     /**
-     * @return integer
+     * @return strval
      */
     public function getContentThird() {
-        return $this->getData(self::CONTENT_THIRD);
+        return strval($this->getData(self::CONTENT_THIRD));
     }
 
     /**
