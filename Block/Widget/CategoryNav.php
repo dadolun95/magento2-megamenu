@@ -73,7 +73,7 @@ class CategoryNav extends Template implements BlockInterface
     private function getCategoryNodeHtml($initialLevel, $category, $depth, $show_children_only = false) {
         $html = '';
         if ($category->getIsActive() && $category->getIncludeInMenu()) {
-            if ($category->getLevel() < $initialLevel + $depth && $category->getChildren()) {
+            if ($category->getLevel() < $initialLevel + $depth && $category->getChildren(false, true, true)) {
                 $html .= '<li class="level' . $category->getLevel() . ' parent">';
             } else {
                 $html .= '<li class="level' . $category->getLevel() . '">';
@@ -81,9 +81,9 @@ class CategoryNav extends Template implements BlockInterface
             if(!$show_children_only) {
                 $html .= '<a href="' . $category->getUrl() . '">' . $category->getName() . '</a>';
             }
-            if ($category->getLevel() < $initialLevel + $depth && $category->getChildren()) {
+            if ($category->getLevel() < $initialLevel + $depth && $category->getChildren(false, true, true)) {
                 $html .= '<ul class="level' . $category->getLevel() . '">';
-                $children = explode(',', $category->getChildren());
+                $children = explode(',', $category->getChildren(false, true, true));
                 foreach ($children as $childId) {
                     $categoryChild = $this->categoryRepository->get($childId);
                     if ($categoryChild->getLevel() < $initialLevel + $depth) {
