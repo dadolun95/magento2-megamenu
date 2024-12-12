@@ -1,11 +1,11 @@
 {
-  "name": "dadolun/magento2-megamenu",
+  "name": "dadolun95/magento2-megamenu",
   "description": "Magento2 MegaMenu made easy",
   "require": {
     "php": ">=7.1.0"
   },
   "type": "magento2-module",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": [
     "MIT"
   ],
