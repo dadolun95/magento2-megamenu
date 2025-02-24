@@ -141,7 +141,7 @@ class Nav extends Template
     protected function getChildItemHtml($menuItem, $menuItems = null, $key = null)
     {
         $html = '';
-        $html .= '<li class="level0 nav-' . $key . ' first level-top ' . $menuItem->getLinkClasses() . '"><a href="' . $this->getMenuItemUrl($menuItem) . '">' . $menuItem->getTitle() . '</a>';
+        $html .= '<li class="level0 nav-' . $key . ' first level-top ' . $menuItem->getLinkClasses() . '"><a href="' . $this->getMenuItemUrl($menuItem) . '" title="'.$menuItem->getTitle().'">' . $menuItem->getTitle() . '</a>';
         $html .= $this->getChildItemSubmenuHtml($menuItem);
         $html .= '</li>';
         return $html;

@@ -132,12 +132,12 @@ class Topmenu extends Nav
                 $menuItems[$key]['title'] = $menuItem->getTitle();
                 $menuItems[$key]['classes'] = $menuItem->getLinkClasses();
             }
-            $html .= '<li class="level0 nav-' . $key . ' first level-top ' . $menuItems[$key]['classes'] . '"><a href="' . $menuItems[$key]['url'] . '" class="level-top"><span>' . $menuItems[$key]['title'] . '</span></a>';
+            $html .= '<li class="level0 nav-' . $key . ' first level-top ' . $menuItems[$key]['classes'] . '"><a href="' . $menuItems[$key]['url'] . '" class="level-top" title="' . $menuItems[$key]['title'] . '"><span>' . $menuItems[$key]['title'] . '</span></a>';
         } else {
             $itemUrl = $this->getMenuItemUrl($menuItem);
             $itemTitle = $menuItem->getTitle();
             $itemClasses = $menuItem->getLinkClasses();
-            $html .= '<li class="level0 nav-' . $key . ' first level-top parent ' . $itemClasses . '"><a href="' . $itemUrl . '" class="level-top"><span>' . $itemTitle . '</span></a>';
+            $html .= '<li class="level0 nav-' . $key . ' first level-top parent ' . $itemClasses . '"><a href="' . $itemUrl . '" class="level-top" title="' . $itemTitle . '"><span>' . $itemTitle . '</span></a>';
         }
         $html .= $this->getChildItemSubmenuHtml($menuItem, $menuItems, $key);
         $html .= '</li>';
