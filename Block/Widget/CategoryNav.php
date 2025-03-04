@@ -35,8 +35,7 @@ class CategoryNav extends Template implements BlockInterface
         CategoryRepository $categoryRepository,
         Template\Context $context,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($context, $data);
         $this->categoryRepository = $categoryRepository;
     }
@@ -49,7 +48,8 @@ class CategoryNav extends Template implements BlockInterface
      * @return string
      * @throws NoSuchEntityException
      */
-    public function getCategoryTreeHtml($categoryId, $depth = 1, $show_children_only = false) {
+    public function getCategoryTreeHtml($categoryId, $depth = 1, $show_children_only = false)
+    {
         $categoryId = str_replace('category/', '', $categoryId);
         /**
          * @var  Category $category
@@ -70,7 +70,8 @@ class CategoryNav extends Template implements BlockInterface
      * @return string
      * @throws NoSuchEntityException
      */
-    private function getCategoryNodeHtml($initialLevel, $category, $depth, $show_children_only = false) {
+    private function getCategoryNodeHtml($initialLevel, $category, $depth, $show_children_only = false)
+    {
         $html = '';
         if ($category->getIsActive() && $category->getIncludeInMenu()) {
             if ($category->getLevel() < $initialLevel + $depth && $category->getChildren(false, true, true)) {
@@ -78,8 +79,8 @@ class CategoryNav extends Template implements BlockInterface
             } else {
                 $html .= '<li class="level' . $category->getLevel() . '">';
             }
-            if(!$show_children_only) {
-                $html .= '<a href="' . $category->getUrl() . '">' . $category->getName() . '</a>';
+            if (!$show_children_only) {
+                $html .= '<a href="' . $category->getUrl() . '" title="' . $category->getName() . '">' . $category->getName() . '</a>';
             }
             if ($category->getLevel() < $initialLevel + $depth && $category->getChildren(false, true, true)) {
                 $html .= '<ul class="level' . $category->getLevel() . '">';
